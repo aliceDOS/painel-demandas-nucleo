@@ -1,0 +1,9 @@
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+export default defineConfig({
+  plugins: [react()],
+  base: process.env.GITHUB_PAGES_BASE === 'true'
+    ? `/${(process.env.GITHUB_REPOSITORY ?? 'usuario/nucleo-articulacao').split('/')[1]}/`
+    : '/',
+  server: { host: '0.0.0.0' },
+});

@@ -1,0 +1,17 @@
+/* Complemento isolado: não altera o restante do Kanban. */
+.meet-page-compact .meet-layout {grid-template-columns: minmax(300px,.8fr) minmax(0,1.6fr)}
+.meet-page-compact .meet-initial-upload {display:flex;flex-direction:column;gap:8px}
+.meet-page-compact .meet-pdf-picker {position:relative;border:2px dashed #c8d7e9;border-radius:10px;background:#f6f9fd;padding:20px 14px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:7px;text-align:center;cursor:pointer;color:#2e5783;font-size:13px}
+.meet-page-compact .meet-pdf-picker span {font-weight:750}
+.meet-page-compact .meet-pdf-picker small {color:#748ca6;font-weight:400}
+.meet-page-compact .meet-pdf-picker input {position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;padding:0}
+.meet-page-compact .meet-pdf-picker:focus-within {outline:2px solid #2b65a4;outline-offset:2px}
+.meet-page-compact .meet-selected-pdfs {display:flex;flex-direction:column;gap:6px}
+.meet-page-compact .meet-selected-pdf {display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background:#f2f7fc;color:#375576;font-size:12px}
+.meet-page-compact .meet-selected-pdf span {min-width:0;flex:1;overflow-wrap:anywhere}
+.meet-page-compact .meet-selected-pdf button {border:0;background:transparent;color:#a23b53;cursor:pointer;padding:4px;display:inline-flex}
+.meet-page-compact .meet-form-actions .primary {min-height:42px}
+.meet-page-compact .meet-load-error {background:#fff2ed;border:1px solid #ebc7b7;border-radius:9px;color:#9f412c;padding:11px 13px;font-size:12px;margin-bottom:12px;white-space:pre-wrap}
+.meet-page-compact .meet-card {padding:18px}
+.meet-page-compact .meet-card .meet-meta {margin:7px 0 13px}
+@media(max-width:1100px){.meet-page-compact .meet-layout {grid-template-columns:1fr}}

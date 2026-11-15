@@ -1,0 +1,35 @@
+/* Estilo do mapa do Apps Script: OpenFreeMap Liberty, agrupamentos azuis, pinos vermelhos. */
+.nucleo-appscript-map .map-summary{display:flex;align-items:center;flex-wrap:wrap;gap:10px 15px;margin:8px 0 12px;color:#315375;font-size:12px}
+.nucleo-appscript-map .map-summary>span:first-child{display:flex;align-items:center;gap:5px;font-weight:600}
+.nucleo-appscript-map .map-summary .map-fit-btn{margin-left:auto;padding:8px 11px;font-size:12px}
+.nucleo-appscript-map .map-pending-location{color:#945d22;background:#fff5df;border-radius:7px;padding:6px 9px}
+.nucleo-appscript-map .map-filter-toggle{display:flex;align-items:center;gap:8px;color:#526a86;font-size:12px;margin:10px 0}
+.nucleo-appscript-map .map-filter-toggle input{accent-color:#2a568a}
+.nucleo-appscript-map .map-stage{position:relative;overflow:hidden;isolation:isolate;border:1px solid #dce4ed;border-radius:12px;background:#e6edf4}
+.nucleo-appscript-map .map-stage .map-container{width:100%;height:min(74vh,770px);min-height:510px;border:0;border-radius:0}
+.nucleo-appscript-map .map-stage:fullscreen{background:#f7fbff;border:0;border-radius:0}
+.nucleo-appscript-map .map-stage:fullscreen .map-container{height:100dvh!important;max-height:none!important;min-height:0!important}
+.nucleo-appscript-map .map-fullscreen-button{position:absolute;z-index:4;top:14px;right:15px;box-shadow:0 3px 14px #254b7b33;background:#fff;color:#214675;border:1px solid #d8e2ef;font-size:12px;display:flex;align-items:center;gap:6px}
+.nucleo-appscript-map .map-legend{z-index:4;position:absolute;left:12px;bottom:24px;display:flex;flex-wrap:wrap;gap:9px 13px;background:#ffffffed;padding:9px 12px;box-shadow:0 2px 9px #133f6520;border-radius:9px;font-size:10px;color:#425978;max-width:calc(100% - 24px);pointer-events:none}
+.nucleo-appscript-map .map-legend span{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.nucleo-appscript-map .map-legend i{width:10px;height:10px;border-radius:100%;display:inline-block}
+.nucleo-appscript-map .map-stage .maplibregl-ctrl-top-left{top:10px;left:10px}
+.nucleo-appscript-map .map-stage .maplibregl-ctrl-attrib{font-size:10px;background:#fffffff0!important}
+/* Popup com resumo da descrição; clique abre a tarefa completa. */
+.nucleo-appscript-map .maplibregl-popup-content{border-radius:10px;padding:13px 15px;box-shadow:0 8px 26px #132b3c30}
+.nucleo-appscript-map .maplibregl-popup-close-button{font-size:19px;padding:2px 7px}
+.nucleo-appscript-map .maplibregl-popup{z-index:5}
+.nucleo-popup-task{display:flex;flex-direction:column;gap:7px;min-width:220px;max-width:310px;color:#1b3d75;font-family:Inter,Arial,sans-serif}
+.nucleo-popup-task-title{font-size:13px;line-height:1.45;padding-right:10px;overflow-wrap:anywhere}
+.nucleo-popup-task small{display:block;font-size:10px;line-height:1.5;color:#65758e;overflow-wrap:anywhere}
+.nucleo-popup-bairro{background:#f0f5ff;border:1px solid #d8e6fc;padding:8px 10px;border-radius:7px;display:flex;flex-direction:column;gap:3px}
+.nucleo-popup-bairro span{color:#6883b0;text-transform:uppercase;font-size:9px;letter-spacing:.07em;font-weight:700}
+.nucleo-popup-bairro b{color:#203f73;font-size:13px}
+.nucleo-popup-description-label{font-size:9px;font-weight:800;letter-spacing:.07em;color:#7087a8;margin-top:2px}
+.nucleo-popup-description{font-size:11px;line-height:1.55;color:#314d70;background:#f8fafc;border:1px solid #e4ebf5;border-radius:7px;padding:9px;margin:0;max-height:132px;overflow:auto;overflow-wrap:anywhere;white-space:normal}
+.nucleo-popup-open{margin-top:4px;background:#284983;color:#fff;padding:9px 10px;border:0;border-radius:7px;font-weight:700;font-size:11px;text-align:center;cursor:pointer}
+.nucleo-popup-open:hover{background:#183661}
+.nucleo-bairro-pin{width:20px;height:20px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#0e9ead;border:3px solid #fff;box-shadow:0 1px 8px #245a6960}
+.nucleo-bairro-popup{max-width:220px;font:12px Inter,Arial,sans-serif;color:#2a476a;display:flex;flex-direction:column;gap:5px}
+.nucleo-bairro-popup strong{font-size:13px}.nucleo-bairro-popup p{margin:0;font-size:12px}.nucleo-bairro-popup small{font-size:10px;color:#637b93}
+@media(max-width:650px){.nucleo-appscript-map .map-summary .map-fit-btn{margin-left:0}.nucleo-appscript-map .map-stage .map-container{min-height:420px}.nucleo-appscript-map .map-legend{font-size:9px;gap:7px;padding:7px}.nucleo-appscript-map .map-fullscreen-button{top:9px;right:9px}.nucleo-popup-task{min-width:180px;max-width:240px}}
