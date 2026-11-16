@@ -146,7 +146,10 @@ export function MeetingsPage({ profile, alert }: { profile: Profile; alert: (mes
         await axios.post(`${functionUrl}?action=upload`, file, {
           headers: { ...headers, 'Content-Type': 'application/pdf', 'x-meeting-id': meetingId, 'x-file-name': encodeURIComponent(file.name) },
           onUploadProgress: evt => {
-            if (evt.total) setProgress(old => ({ ...old, [marker]: Math.round(evt.loaded / evt.total * 95) }));
+            const total = evt.total;
+            if (typeof total === 'number' && total > 0) {
+              setProgress(old => ({ ...old, [marker]: Math.round(evt.loaded / total * 95) }));
+            }
           },
           timeout: 120000,
         });
@@ -183,6 +186,7 @@ export function MeetingsPage({ profile, alert }: { profile: Profile; alert: (mes
       }
       let uploadMessage = '';
       if (pendingPdfs.length) {
+        if (!meetingId) throw new Error('Não foi possível identificar a reunião.');
         const result = await uploadFiles(meetingId, pendingPdfs);
         if (result.failures.length) uploadMessage = ` Reunião salva, mas ${result.failures.length} PDF(s) falharam: ${result.failures.join('; ')}`;
         else uploadMessage = ` ${result.succeeded} PDF(s) enviado(s).`;
