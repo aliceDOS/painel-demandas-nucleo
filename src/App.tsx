@@ -2,8 +2,8 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import {
   BarChart3, CalendarClock, ChevronRight, FileText,
-  Filter, LayoutDashboard, LogOut, MapPinned,
-  Plus, RefreshCcw, Search, ShieldCheck, Users, X,
+  Filter, LayoutDashboard, LogIn, LogOut, MapPinned,
+  Plus, RefreshCcw, Search, ShieldCheck, X,
 } from 'lucide-react';
 import { supabase } from './lib/supabase';
 import { STAGES, friendlyError } from './lib/types';
@@ -158,12 +158,20 @@ export default function App(){
   </div>;
 }
 function SignIn({notify,notice}:{notify:(s:string)=>void;notice:string}){
-  const [email,setEmail]=useState('');const [busy,setBusy]=useState(false);
-  async function login(e:React.FormEvent){
-    e.preventDefault();setBusy(true);
-    try{const {error}=await supabase.auth.signInWithOtp({email,options:{emailRedirectTo:window.location.origin+import.meta.env.BASE_URL}});
-      if(error)throw error;notify('Enviamos um link de acesso para seu e-mail. Consulte também o spam.');}
-    catch(err){notify(friendlyError(err));}finally{setBusy(false);}
+  const [busy,setBusy]=useState(false);
+  async function loginGoogle(){
+    if(busy)return;
+    setBusy(true);
+    try{
+      // Respeita a pasta do GitHub Pages e também funciona em localhost.
+      const redirectTo=new URL(import.meta.env.BASE_URL,window.location.origin).toString();
+      const {error}=await supabase.auth.signInWithOAuth({provider:'google',options:{redirectTo}});
+      if(error)throw error;
+      // Em um login bem-sucedido, o navegador é redirecionado ao Google.
+    }catch(err){
+      notify(friendlyError(err));
+      setBusy(false);
+    }
   }
-  return <div className="login-screen"><div className="login-panel"><div className="brand-mark large">NA</div><h1>Núcleo de Articulação</h1><p>Demandas do Gabinete · São José do Rio Preto</p><form onSubmit={login}><label>E-mail institucional<input type="email" autoComplete="email" required value={email} onChange={e=>setEmail(e.target.value)} placeholder="seu.email@instituicao.gov.br"/></label><button className="primary" disabled={busy} type="submit"><Users size={17}/>{busy?'Enviando...':'Receber link de acesso'}</button></form><div className="login-info"><ShieldCheck size={19}/> O acesso depende de aprovação do administrador. Os anexos são privados.</div>{notice&&<p className="hint">{notice}</p>}</div></div>;
+  return <div className="login-screen"><div className="login-panel"><div className="brand-mark large">NA</div><h1>Núcleo de Articulação</h1><p>Demandas do Gabinete · São José do Rio Preto</p><button className="primary" style={{width:'100%',margin:'15px 0 22px'}} disabled={busy} type="button" onClick={()=>void loginGoogle()}><LogIn size={19}/>{busy?'Conectando ao Google...':'Entrar com Google'}</button><div className="login-info"><ShieldCheck size={19}/> Somente colaboradores autorizados podem acessar as demandas. A sessão fica salva neste navegador.</div>{notice&&<p className="hint">{notice}</p>}</div></div>;
 }
